@@ -424,11 +424,25 @@ th { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; colo
 .timeline li { display: grid; grid-template-columns: 16px 1fr; gap: 0.7rem; }
 .timeline i { width: 12px; height: 12px; margin-top: 0.35rem; border-radius: 50%; background: var(--gold); display: block; }
 .money { font-variant-numeric: tabular-nums; }
-.demo { background: #fffaf0; border: 1px dashed var(--gold); border-radius: 16px; padding: 0.9rem 1rem; }
+.demo { background: #fffaf0; border: 1px dashed var(--gold); border-radius: 16px; padding: 0.9rem 1rem; color: var(--ink); }
 .pager { display: flex; gap: 0.8rem; align-items: center; margin-top: 1rem; }
 .pager a { color: var(--forest); }
 .auth-wrap { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
-.auth-story { background: var(--forest); color: #f6f1e6; padding: 3rem; display: flex; flex-direction: column; justify-content: space-between; }
+.auth-story {
+  position: relative; overflow: hidden; isolation: isolate;
+  background: #0e3c20; color: #f6f1e6; padding: 3rem;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.auth-story::before {
+  content: ""; position: absolute; inset: 0; z-index: -2; transform: scale(1.02);
+  background:
+    linear-gradient(105deg, rgba(8, 26, 15, 0.88) 0%, rgba(14, 60, 32, 0.72) 45%, rgba(14, 105, 56, 0.55) 100%),
+    url("../images/field-overlay.jpg") center/cover no-repeat;
+}
+.auth-story::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0.08; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 .auth-story h1 { font-size: clamp(2.6rem, 4vw, 4.2rem); }
 .auth-panel { padding: 3rem 8vw; display: flex; flex-direction: column; justify-content: center; }
 .stack { display: grid; gap: 0.75rem; }
